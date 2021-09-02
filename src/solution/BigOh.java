@@ -17,15 +17,15 @@ import util.Algorithms;
 public class BigOh
 {
     private static final double MILLISECONDS_PER_SECOND = 1000.0;
-    
+
     private Random rand;
-    
+
     /**
      * No-args constructor initializes the random using current time.
      */
     public BigOh()
     {
-    
+
         rand = new Random();
     }
 
@@ -54,7 +54,25 @@ public class BigOh
     public double robustTimeAlgorithm(int choice, int n)
     {
         // TODO
-        return -1.0;
+        double result = 9999;
+        for (int i = 0; i < 5; i++)
+        {
+            if (i == 0)
+            {
+                result = timeAlgorithm(choice, n);
+
+            }
+            else
+            {
+                double check = timeAlgorithm(choice, n);
+                if (check < result)
+                {
+                    result = check;
+                }
+            }
+
+        }
+        return result;
     }
 
     /**
@@ -72,11 +90,9 @@ public class BigOh
         // during timing. (Do this first.)
         System.gc();
         long startTime = System.currentTimeMillis();
-        System.out.println(startTime);
         runAlgorithm(choice, n);
         long endTime = System.currentTimeMillis();
-        System.out.println(endTime);
-        double result = (endTime-startTime);
+        double result = (endTime - startTime) / 1000.0;
         // TODO
         return result;
     }
@@ -92,29 +108,33 @@ public class BigOh
      */
     public int runAlgorithm(int choice, int numElements)
     {
-    	int result = 0;
+        int result = 0;
         // TODO (be sure to change return statement too)
-    	switch(choice) {
-    	case 1:
-    		result = Algorithms.alg1(numElements, rand);
-    		break;
-    	case 2:
-    		result = Algorithms.alg2(numElements, rand);
-    		break;
-    	case 3:
-    		result = Algorithms.alg3(numElements, rand);
-    		break;
-    	case 4:
-    		result = Algorithms.alg4(numElements, rand);
-    		break;
-    	case 5:
-    		result = Algorithms.alg5(numElements, rand);
-    		break;
-    	case 6:
-    		result = Algorithms.alg6(numElements, rand);
-    		break;
-  
-    	}
+        switch (choice)
+        {
+            case 1:
+                result = Algorithms.alg1(numElements, rand);
+                break;
+            case 2:
+                result = Algorithms.alg2(numElements, rand);
+                break;
+            case 3:
+                result = Algorithms.alg3(numElements, rand);
+                break;
+            case 4:
+                result = Algorithms.alg4(numElements, rand);
+                break;
+            case 5:
+                result = Algorithms.alg5(numElements, rand);
+                break;
+            case 6:
+                result = Algorithms.alg6(numElements, rand);
+                break;
+            default:
+                result = 0;
+                break;
+
+        }
         return result;
     }
 
@@ -130,7 +150,16 @@ public class BigOh
      */
     public double bigOhFunc(int choice, double n)
     {
-        return -1 * 4;
+        double result = 0;
+        if (choice == 1)
+        {
+            result = n;
+        }
+        else if (choice == 2)
+        {
+            result = Math.pow(n, 2);
+        }
+        return result;
     }
 
     /**
@@ -150,7 +179,9 @@ public class BigOh
     public double estimateTiming(int choice, int n1, double t1, int n2)
     {
         // TODO
-        return -1 * 8;
+        System.out.println(
+            "Choice: " + choice + " N: " + n1 + " Timing: " + t1 + "N2: " + n2);
+        return t1 * (n2 / n1);
     }
 
     /**
@@ -164,9 +195,9 @@ public class BigOh
      */
     public double percentError(double correct, double estimate)
     {
-        
+
         // TODO
-        return (correct * estimate) / correct;
+        return (estimate - correct) / correct;
     }
 
     /**
