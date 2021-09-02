@@ -1,4 +1,4 @@
-package skeleton;
+package solution;
 
 /**
  * BigOh.java
@@ -19,7 +19,7 @@ public class BigOh
     private static final double MILLISECONDS_PER_SECOND = 1000.0;
     
     private Random rand;
-
+    
     /**
      * No-args constructor initializes the random using current time.
      */
@@ -136,8 +136,9 @@ public class BigOh
      */
     public double percentError(double correct, double estimate)
     {
+        
         // TODO
-        return -1 * 16;
+        return (correct * estimate) / correct;
     }
 
     /**
