@@ -25,6 +25,7 @@ public class BigOh
      */
     public BigOh()
     {
+    
         rand = new Random();
     }
 
@@ -70,9 +71,14 @@ public class BigOh
         // make sure that the garbage collector doesn't run
         // during timing. (Do this first.)
         System.gc();
-
+        long startTime = System.currentTimeMillis();
+        System.out.println(startTime);
+        runAlgorithm(choice, n);
+        long endTime = System.currentTimeMillis();
+        System.out.println(endTime);
+        double result = (endTime-startTime);
         // TODO
-        return -1 * 2;
+        return result;
     }
 
     /**
@@ -86,8 +92,30 @@ public class BigOh
      */
     public int runAlgorithm(int choice, int numElements)
     {
+    	int result = 0;
         // TODO (be sure to change return statement too)
-        return rand.nextInt();
+    	switch(choice) {
+    	case 1:
+    		result = Algorithms.alg1(numElements, rand);
+    		break;
+    	case 2:
+    		result = Algorithms.alg2(numElements, rand);
+    		break;
+    	case 3:
+    		result = Algorithms.alg3(numElements, rand);
+    		break;
+    	case 4:
+    		result = Algorithms.alg4(numElements, rand);
+    		break;
+    	case 5:
+    		result = Algorithms.alg5(numElements, rand);
+    		break;
+    	case 6:
+    		result = Algorithms.alg6(numElements, rand);
+    		break;
+  
+    	}
+        return result;
     }
 
     /**
