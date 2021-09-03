@@ -93,7 +93,7 @@ public class BigOh
         runAlgorithm(choice, n);
         long endTime = System.currentTimeMillis();
         double result = (endTime - startTime) / 1000.0;
-        // TODO
+        
         return result;
     }
 
@@ -109,31 +109,33 @@ public class BigOh
     public int runAlgorithm(int choice, int numElements)
     {
         int result = 0;
-        // TODO (be sure to change return statement too)
-        switch (choice)
+        if(choice == 1)
         {
-            case 1:
-                result = Algorithms.alg1(numElements, rand);
-                break;
-            case 2:
-                result = Algorithms.alg2(numElements, rand);
-                break;
-            case 3:
-                result = Algorithms.alg3(numElements, rand);
-                break;
-            case 4:
-                result = Algorithms.alg4(numElements, rand);
-                break;
-            case 5:
-                result = Algorithms.alg5(numElements, rand);
-                break;
-            case 6:
-                result = Algorithms.alg6(numElements, rand);
-                break;
-            default:
-                result = 0;
-                break;
-
+            result = Algorithms.alg1(numElements, rand);
+        }
+        else if (choice == 2)
+        {
+        	result = Algorithms.alg2(numElements, rand);
+        }
+        else if (choice == 3)
+        {
+        	result = Algorithms.alg3(numElements, rand);
+        }
+        else if (choice == 4)
+        {
+        	result = Algorithms.alg4(numElements, rand);
+        }
+        else if (choice == 5)
+        {
+        	result = Algorithms.alg5(numElements, rand);
+        }
+        else if (choice == 6)
+        {
+        	result = Algorithms.alg6(numElements, rand);
+        }
+        else
+        {
+        	result = -1;
         }
         return result;
     }
@@ -150,15 +152,33 @@ public class BigOh
      */
     public double bigOhFunc(int choice, double n)
     {
-        double result = 0;
+        double result = -1;
         if (choice == 1)
         {
             result = n;
         }
         else if (choice == 2)
         {
-            result = Math.pow(n, 2);
+        	
+            result = n * 2;
         }
+        else if (choice == 3)
+        {
+            result = n * 3;
+        }
+        else if (choice == 4)
+        {
+        	result = Math.pow(n, 2);
+        }
+        else if (choice == 5)
+        {
+        	result = n * 4;
+        }
+        else if (choice == 6)
+        {
+            result = n * 5;
+        }
+        System.out.println("Choice: " + choice + " N = " + result);
         return result;
     }
 
@@ -179,9 +199,8 @@ public class BigOh
     public double estimateTiming(int choice, int n1, double t1, int n2)
     {
         // TODO
-        System.out.println(
-            "Choice: " + choice + " N: " + n1 + " Timing: " + t1 + "N2: " + n2);
-        return t1 * (n2 / n1);
+    	double n = bigOhFunc(choice,n2);
+        return t1 * (n / n1);
     }
 
     /**
@@ -215,8 +234,12 @@ public class BigOh
      */
     public double computePercentError(int choice, int n1, int n2)
     {
+    	double emTimeN1 = robustTimeAlgorithm(choice, n1);
+    	double emTimeN2 = robustTimeAlgorithm(choice, n2);
+    	double result = estimateTiming(choice,n1,emTimeN1,n2);
+    	
         // TODO
-        return -1 * 32;
+        return percentError(emTimeN2, result);
     }
 
     /**
@@ -231,7 +254,7 @@ public class BigOh
         int numElements = 0;
         Scanner keyInput = new Scanner(System.in);
         BigOh bo = new BigOh();
-
+       
         // run the fragments
         choice = menu(keyInput);
         while (choice != 7)
@@ -244,8 +267,11 @@ public class BigOh
                 long milliseconds = (long) (time * MILLISECONDS_PER_SECOND);
                 System.out.println("The time for alg" + choice + " with n="
                     + numElements + " is " + milliseconds + " ms.\n\n");
+                //TODO: Remove
+                bo.bigOhFunc(choice, numElements);
             }
             choice = menu(keyInput);
+            
         }
         System.out.println("Quitting");
     }
