@@ -160,11 +160,11 @@ public class BigOh
         else if (choice == 2)
         {
         	
-            result = n * 2;
+            result = Math.pow(n, 3);
         }
         else if (choice == 3)
         {
-            result = n * 3;
+            result = Math.pow(n, 2);
         }
         else if (choice == 4)
         {
@@ -172,11 +172,11 @@ public class BigOh
         }
         else if (choice == 5)
         {
-        	result = n * 4;
+        	result = Math.pow(n, 4);
         }
         else if (choice == 6)
         {
-            result = n * 5;
+            result = Math.pow(5, n);
         }
         System.out.println("Choice: " + choice + " N = " + result);
         return result;
@@ -198,9 +198,11 @@ public class BigOh
      */
     public double estimateTiming(int choice, int n1, double t1, int n2)
     {
+        
         // TODO
-    	double n = bigOhFunc(choice,n2);
-        return t1 * (n / n1);
+        double f1 = bigOhFunc(choice, n1);
+        double f2 = bigOhFunc(choice, n2);
+        return t1 * f2 / f1;
     }
 
     /**
