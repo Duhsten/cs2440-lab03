@@ -172,11 +172,11 @@ public class BigOh
         }
         else if (choice == 5)
         {
-        	result = Math.pow(n, 4);
+        	result = Math.pow(n, 5);
         }
         else if (choice == 6)
         {
-            result = Math.pow(5, n);
+            result = Math.pow(n, 4);
         }
         System.out.println("Choice: " + choice + " N = " + result);
         return result;
